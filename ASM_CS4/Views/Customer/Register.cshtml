@@ -1,0 +1,93 @@
+﻿@model ASM_CS4.Models.Customer
+
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    Layout = null;
+}
+<style>
+    /* Đặt kiểu cho toàn bộ form */
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tiêu đề chính */
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Đặt kiểu cho nhãn */
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        color: #555;
+    }
+
+    /* Đặt kiểu cho input */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    /* Nút đăng ký */
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+    /* Khoảng cách và căn giữa nội dung */
+    div {
+        margin-bottom: 15px;
+    }
+</style>
+
+
+<h2>Đăng ký tài khoản</h2>
+
+<form asp-action="Register" method="post">
+    <div>
+        <label for="TenKhachHang">Tên khách hàng:</label>
+        <input type="text" asp-for="TenKhachHang" class="form-control" required />
+    </div>
+    <div>
+        <label for="DienThoai">Điện thoại:</label>
+        <input type="tel" asp-for="DienThoai" class="form-control" required />
+    </div>
+    <div>
+        <label for="Email">Email:</label>
+        <input type="email" asp-for="Email" class="form-control" required />
+    </div>
+    <div>
+        <label for="DiaChi">Địa chỉ:</label>
+        <input type="text" asp-for="DiaChi" class="form-control" required />
+    </div>
+    <div>
+        <label for="MatKhau">Mật khẩu:</label>
+        <input type="password" asp-for="MatKhau" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+</form>
+
+

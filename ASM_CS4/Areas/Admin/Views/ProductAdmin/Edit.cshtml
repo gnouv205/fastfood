@@ -1,0 +1,228 @@
+﻿@model ASM_CS4.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Toàn bộ body */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafb;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    /* Tiêu đề */
+    h1, h4 {
+        color: #4CAF50;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    h4 {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    /* Container tổng thể */
+    .row {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .col-md-4 {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background-color: #fdfdfd;
+    }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+
+    /* Validation */
+    .text-danger {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Nút bấm */
+    .btn-primary {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+    /* Liên kết */
+    a {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    /* Ảnh sản phẩm */
+    .product-image {
+        display: block;
+        margin: 10px auto 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        max-width: 150px;
+        height: auto;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-preview {
+        text-align: center;
+    }
+
+        .image-preview label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+        }
+</style>
+
+<h1>Edit Product</h1>
+<h4>Update product information</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-area="Admin" asp-controller="ProductAdmin" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Mã sản phẩm -->
+            <div class="form-group">
+                <label asp-for="MaSanPham" class="control-label"></label>
+                <input asp-for="MaSanPham" class="form-control" readonly />
+                <span asp-validation-for="MaSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Tên sản phẩm -->
+            <div class="form-group">
+                <label asp-for="TenSanPham" class="control-label"></label>
+                <input asp-for="TenSanPham" class="form-control" />
+                <span asp-validation-for="TenSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Hiển thị ảnh hiện tại -->
+            <div class="form-group image-preview">
+                <label>Current Image</label>
+                @if (!string.IsNullOrEmpty(Model.HinhSanPham))
+                {
+                    <img src="@Url.Content(Model.HinhSanPham)" alt="Product Image" class="product-image" />
+                }
+                else
+                {
+                    <p>No image available.</p>
+                }
+            </div>
+
+            <!-- Trường chọn ảnh mới -->
+            <div class="form-group">
+                <label asp-for="HinhSanPham" class="control-label">Choose New Image (Optional)</label>
+                <input asp-for="HinhSanPham" type="file" class="form-control" />
+                <span asp-validation-for="HinhSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Số lượng sản phẩm -->
+            <div class="form-group">
+                <label asp-for="SoLuongSanPham" class="control-label"></label>
+                <input asp-for="SoLuongSanPham" class="form-control" />
+                <span asp-validation-for="SoLuongSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Giá sản phẩm -->
+            <div class="form-group">
+                <label asp-for="GiaSanPham" class="control-label"></label>
+                <input asp-for="GiaSanPham" class="form-control" />
+                <span asp-validation-for="GiaSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Trạng thái sản phẩm -->
+            <div class="form-group">
+                <label asp-for="TrangThai" class="control-label"></label>
+                <input asp-for="TrangThai" class="form-control" />
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
+            </div>
+
+            <!-- Mô tả sản phẩm -->
+            <div class="form-group">
+                <label asp-for="MoTaSanPham" class="control-label"></label>
+                <textarea asp-for="MoTaSanPham" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="MoTaSanPham" class="text-danger"></span>
+            </div>
+
+            <!-- Nút lưu -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Liên kết quay lại -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

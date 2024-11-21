@@ -1,0 +1,91 @@
+﻿@model ASM_CS4.Models.Product
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    
+
+</style>
+
+
+<h1 class="text-center mt-4">Thêm sản phẩm</h1>
+<hr />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <!-- Thông báo lỗi chung -->
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="MaSanPham" class="form-label">Mã sản phẩm</label>
+                    <input asp-for="MaSanPham" class="form-control" placeholder="Nhập mã sản phẩm" />
+                    <span asp-validation-for="MaSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TenSanPham" class="form-label">Tên sản phẩm</label>
+                    <input asp-for="TenSanPham" class="form-control" placeholder="Nhập tên sản phẩm" />
+                    <span asp-validation-for="TenSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="uploadedFile" class="form-label">Hình sản phẩm</label>
+                    <input type="file" name="uploadedFile" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="SoLuongSanPham" class="form-label">Số lượng</label>
+                    <input asp-for="SoLuongSanPham" class="form-control" placeholder="Nhập số lượng sản phẩm" />
+                    <span asp-validation-for="SoLuongSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GiaSanPham" class="form-label">Giá</label>
+                    <input asp-for="GiaSanPham" class="form-control" placeholder="Nhập giá sản phẩm" />
+                    <span asp-validation-for="GiaSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TrangThai" class="form-label">Trạng thái</label>
+                    <select asp-for="TrangThai" class="form-select">
+                        <option value="">-- Chọn trạng thái --</option>
+                        <option value="Còn hàng">Còn hàng</option>
+                        <option value="Hết hàng">Hết hàng</option>
+                    </select>
+                    <span asp-validation-for="TrangThai" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label asp-for="MoTaSanPham" class="form-label">Mô tả</label>
+                    <textarea asp-for="MoTaSanPham" class="form-control" placeholder="Nhập mô tả sản phẩm"></textarea>
+                    <span asp-validation-for="MoTaSanPham" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MaDanhMuc" class="form-label">Mã danh mục</label>
+                    <select asp-for="MaDanhMuc" class="form-select" asp-items="ViewBag.DanhMuc">
+                        <option value="">-- Chọn danh mục --</option>
+                    </select>
+                    <span asp-validation-for="MaDanhMuc" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-4">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Validation Scripts -->
+@{
+	await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

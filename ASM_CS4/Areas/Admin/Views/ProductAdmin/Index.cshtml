@@ -1,0 +1,170 @@
+﻿@model IEnumerable<ASM_CS4.Models.Product>
+
+@{
+	ViewData["Title"] = "Product";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+	/* General Card Styles */
+	.card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		margin-bottom: 20px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Card Header Styles */
+	.card-header {
+		background-color: #17a2b8;
+		color: white;
+		padding: 10px 20px;
+		font-size: 1.1rem;
+	}
+
+	/* Button Styles */
+	.btn-info {
+		background-color: #17a2b8;
+		border-color: #17a2b8;
+	}
+
+		.btn-info:hover {
+			background-color: #138496;
+			border-color: #117a8b;
+		}
+
+		.btn-info .fa-plus {
+			margin-right: 5px;
+		}
+
+	/* Table Styles */
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 20px;
+	}
+
+		.table th, .table td {
+			padding: 12px 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.table th {
+			background-color: #f8f9fa;
+			color: #495057;
+		}
+
+		.table td {
+			vertical-align: middle;
+		}
+
+		.table .text-nowrap {
+			white-space: nowrap;
+		}
+
+		.table img {
+			width: 100px;
+			height: auto;
+		}
+
+		/* Hover Effects for Table Rows */
+		.table tbody tr:hover {
+			background-color: #f1f1f1;
+		}
+
+		/* Action Column Styles */
+		.table .link-success, .table .link-danger {
+			color: #28a745;
+			text-decoration: none;
+		}
+
+			.table .link-success:hover {
+				color: #218838;
+			}
+
+		.table .link-danger {
+			color: #dc3545;
+		}
+
+			.table .link-danger:hover {
+				color: #c82333;
+			}
+
+	/* Responsive Table Styling */
+	.table-responsive {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Admin Table Header Styling */
+	.card-header .row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.card-header .col-md-auto {
+		text-align: right;
+	}
+
+</style>
+
+
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<div class="row">
+			<div class="col-md">
+			</div>
+			<div class="col-md-auto">
+				<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Create" type="button" class="btn btn-info">
+					<i class="fa-solid fa-plus me-1"></i> Thêm sản phẩm
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table id="tbl" class="table">
+				<thead>
+					<tr>
+						<th style="width: 30px"></th>
+						<th>Mã Sản Phẩm</th>
+						<th>Tên Sản Phẩm</th>
+						<th>Ảnh Sản Phẩm</th>
+						<th>Số Lượng</th>
+						<th>Giá</th>
+						<th>Tình trạng</th>
+						<th>Mô tả</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var product in Model)
+					{
+						<tr id="@product.MaSanPham">
+							<td class="text-nowrap bg-light">
+								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Edit" asp-route-maSP="@product.MaSanPham"
+								   class="me-1 link-success"><i class="fa-solid fa-edit"></i></a>
+
+								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Delete"
+								   asp-route-maSP="@product.MaSanPham" class="link-danger">
+									<i class="fa-solid fa-trash"></i>
+								</a>
+
+							</td>
+
+							<td>@product.MaSanPham</td>
+							<td>@product.TenSanPham</td>
+							<td>
+								<img src="@product.HinhSanPham" alt="Product Image" style="width: 100px; height: auto;" />
+							</td>
+							<td>@product.SoLuongSanPham</td>
+							<td>@product.GiaSanPham</td>
+							<td>@product.TrangThai</td>
+							<td>@product.MoTaSanPham</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div> <!-- /.card-body -->
+</div> <!-- /.card -->

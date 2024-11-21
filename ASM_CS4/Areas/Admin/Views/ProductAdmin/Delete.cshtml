@@ -1,0 +1,118 @@
+﻿@model ASM_CS4.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+/* Card tổng thể */
+.card {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+/* Tiêu đề */
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #dc3545; /* Màu đỏ */
+    margin-bottom: 20px;
+}
+
+/* Card-body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Các đoạn text */
+p {
+    font-size: 1rem;
+    color: #495057; /* Màu tối nhẹ */
+    margin-bottom: 10px;
+}
+
+/* Ảnh sản phẩm */
+img {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+/* Button container */
+.form-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Button chính */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #b52a37;
+    border-color: #a72632;
+}
+
+/* Button phụ */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #565e64;
+    border-color: #4e555b;
+}
+
+
+</style>
+
+
+<h1>Are you sure you want to delete this product?</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="DeleteConfirmed" asp-route-maSP="@Model.MaSanPham">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Mã sản phẩm:</strong> @Model.MaSanPham</p>
+                    <p><strong>Tên sản phẩm:</strong> @Model.TenSanPham</p>
+                    <p><strong>Giá:</strong> @Model.GiaSanPham</p>
+                    <p><strong>Số lượng:</strong> @Model.SoLuongSanPham</p>
+                    <p><strong>Trạng thái:</strong> @Model.TrangThai</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="@Model.HinhSanPham" alt="Product Image" style="width: 100px; height: auto;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="@Url.Action("Index", "ProductAdmin", new { area = "Admin" })" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

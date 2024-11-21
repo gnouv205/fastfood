@@ -1,0 +1,445 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ASM_CS4.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ASM_CS4.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\css\\style.css",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\css\\style.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\face.png",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\img\\face.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\people.png",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\img\\people.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\js\\script.js",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\js\\script.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\app.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\app.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\elegant-icons.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\elegant-icons.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\jquery-ui.min.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\jquery-ui.min.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\nice-select.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\nice-select.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\owl.carousel.min.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\reset.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\reset.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\slicknav.min.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\slicknav.min.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\css\\style.css",
+      "PackagePath": "staticwebassets\\LayoutUser\\css\\style.css"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\ElegantIcons.eot",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\ElegantIcons.eot"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\ElegantIcons.svg",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\ElegantIcons.svg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\ElegantIcons.ttf",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\ElegantIcons.ttf"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\ElegantIcons.woff",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\ElegantIcons.woff"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\LayoutUser\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\FoodLogo.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\FoodLogo.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\banner\\banner-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\banner\\banner-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\banner\\banner-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\banner\\banner-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\blog-6.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\blog-6.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\details\\details-author.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\details\\details-author.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\details\\details-hero.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\details\\details-hero.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\details\\details-pic.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\details\\details-pic.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\sidebar\\sr-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\sidebar\\sr-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\sidebar\\sr-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\sidebar\\sr-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\blog\\sidebar\\sr-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\blog\\sidebar\\sr-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\breadcrumb.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\breadcrumb.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\cart\\cart-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\cart\\cart-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\cart\\cart-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\cart\\cart-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\cart\\cart-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\cart\\cart-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\categories\\cat-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\categories\\cat-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\categories\\cat-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\categories\\cat-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\categories\\cat-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\categories\\cat-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\categories\\cat-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\categories\\cat-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\categories\\cat-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\categories\\cat-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-6.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-6.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-7.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-7.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\featured\\feature-8.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\featured\\feature-8.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\hero\\bannerf-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\hero\\bannerf-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\img-8.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\img-8.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\language.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\language.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\latest-product\\lp-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\latest-product\\lp-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\latest-product\\lp-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\latest-product\\lp-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\latest-product\\lp-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\latest-product\\lp-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\login\\bg-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\login\\bg-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\payment-item.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\payment-item.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\pd-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\pd-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\product-details-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\product-details-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\product-details-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\product-details-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\product-details-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\product-details-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\product-details-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\product-details-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\product-details-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\product-details-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\thumb-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\thumb-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\thumb-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\thumb-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\thumb-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\thumb-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\details\\thumb-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\details\\thumb-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-3.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-3.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\discount\\pd-6.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\discount\\pd-6.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-1.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-1.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-10.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-10.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-11.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-11.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-12.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-12.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-13.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-13.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-14.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-14.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-15.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-15.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-16.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-16.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-2.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-2.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-3.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-3.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-4.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-4.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-5.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-5.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-6.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-6.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-7.jpg",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-7.jpg"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-8.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-8.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\img\\product\\product-9.png",
+      "PackagePath": "staticwebassets\\LayoutUser\\img\\product\\product-9.png"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\jquery-3.3.1.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\jquery-3.3.1.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\jquery.nice-select.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\jquery.nice-select.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\jquery.slicknav.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\jquery.slicknav.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\main.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\main.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\mixitup.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\mixitup.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutUser\\js\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\LayoutUser\\js\\owl.carousel.min.js"
+    },
+    {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ASM_CS4.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ASM_CS4.props",
+      "PackagePath": "build\\ASM_CS4.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ASM_CS4.props",
+      "PackagePath": "buildMultiTargeting\\ASM_CS4.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ASM_CS4.props",
+      "PackagePath": "buildTransitive\\ASM_CS4.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
