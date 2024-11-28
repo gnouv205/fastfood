@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\LayoutAdmin\\css\\style.css"
     },
     {
+      "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\bg.jpg",
+      "PackagePath": "staticwebassets\\LayoutAdmin\\img\\bg.jpg"
+    },
+    {
       "Id": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\face.png",
       "PackagePath": "staticwebassets\\LayoutAdmin\\img\\face.png"
     },

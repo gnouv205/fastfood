@@ -1,4 +1,7 @@
-﻿@model List<ASM_CS4.Models.Cart>
+﻿
+@model List<ASM_CS4.Models.Cart>
+
+
 
 <style>
     /* General styles for the page */
@@ -129,7 +132,7 @@ else
                     <td>@item.Product.GiaSanPham.ToString("C")</td>
                     <td>@((item.SoLuong * item.Product.GiaSanPham))</td>
                     <td>
-                        <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.MaGioHang })" class="btn btn-danger">Xóa</a>
+                        <a asp-controller="Cart" asp-action="Delete" asp-route-maSP="@item.MaSanPham" class="btn btn-danger">Xóa</a>
                         <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.MaGioHang })" class="btn btn-success">Mua</a>
                     </td>
 

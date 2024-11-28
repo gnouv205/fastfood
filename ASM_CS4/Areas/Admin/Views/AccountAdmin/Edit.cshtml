@@ -1,0 +1,104 @@
+﻿@model ASM_CS4.Models.UserAdmin
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Admin"; // Tiêu đề của trang
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; // Chỉ định layout nếu cần
+}
+
+<style>
+    /* Thiết lập chung cho form */
+    .form-control {
+        width: 100%; /* Chiều rộng cho các ô input */
+        max-width: 600px; /* Giới hạn chiều rộng tối đa */
+        margin-bottom: 15px; /* Khoảng cách giữa các ô */
+        border: 1px solid #ced4da; /* Viền cho ô input */
+        border-radius: 0.25rem; /* Bo góc cho ô input */
+        padding: 0.375rem 0.75rem; /* Padding cho ô input */
+    }
+
+    /* Thiết lập cho nút submit */
+    .btn-primary {
+        margin-top: 20px; /* Khoảng cách phía trên nút */
+        background-color: #007bff; /* Màu nền cho nút */
+        border: none; /* Bỏ viền cho nút */
+        color: white; /* Màu chữ cho nút */
+        padding: 0.375rem 1rem; /* Padding cho nút */
+        border-radius: 0.25rem; /* Bo góc cho nút */
+        transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    }
+
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    /* Thiết lập cho tiêu đề */
+    h1 {
+        font-size: 2rem; /* Kích thước chữ cho tiêu đề */
+        margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+        color: #343a40; /* Màu chữ cho tiêu đề */
+    }
+
+    /* Thiết lập cho các thông báo lỗi */
+    .text-danger {
+        font-size: 0.875em; /* Kích thước chữ cho thông báo lỗi */
+        margin-top: 5px; /* Khoảng cách trên thông báo lỗi */
+    }
+
+    /* Thiết lập cho hàng của form */
+    .form-group {
+        margin-bottom: 15px; /* Khoảng cách giữa các nhóm ô input */
+    }
+
+    /* Thiết lập cho các nhãn */
+    .control-label {
+        font-weight: bold; /* In đậm cho các nhãn */
+        margin-bottom: 5px; /* Khoảng cách dưới nhãn */
+        color: #495057; /* Màu chữ cho nhãn */
+    }
+</style>
+
+<div style="width:1200px" class="card card-info card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Chỉnh sửa Admin</h3> <!-- Tiêu đề trang -->
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-controller="AccountAdmin" asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="MaAdmin" class="control-label"></label>
+                        <input asp-for="MaAdmin" class="form-control" readonly /> <!-- Không cho phép sửa mã admin -->
+                        <span asp-validation-for="MaAdmin" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="MatKhau" class="control-label"></label>
+                        <input asp-for="MatKhau" type="password" class="form-control" />
+                        <span asp-validation-for="MatKhau" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" /> <!-- Nút chiếm toàn bộ chiều rộng -->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Trở lại danh sách</a>
+        </div>
+
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    </div>
+</div>

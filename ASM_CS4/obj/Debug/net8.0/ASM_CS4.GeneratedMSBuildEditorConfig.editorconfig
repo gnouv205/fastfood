@@ -26,8 +26,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/AccountAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudEFkbWluXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/AccountAdmin/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudEFkbWluXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/AccountAdmin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudEFkbWluXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/AccountAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudEFkbWluXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/HomeAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/LoginAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9naW5BZG1pblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Areas/Admin/Views/ProductAdmin/Create.cshtml]
@@ -60,6 +80,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Views/Cart/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Views/Cart/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/FPT Polytechnic/C\#4/ASM_CS4/ASM_CS4/Views/Customer/Login.cshtml]

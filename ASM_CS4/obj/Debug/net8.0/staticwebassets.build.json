@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7DQMCzFsWUEPtwT2PH/LxOXe11MykdxtLXHfN5pkf4Y=",
+  "Hash": "+KfKEWTEoweSeeAqyUiWf+KophWTido+Z6H++H0OoN8=",
   "Source": "ASM_CS4",
   "BasePath": "_content/ASM_CS4",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\LayoutAdmin\\css\\style.css"
+    },
+    {
+      "Identity": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\bg.jpg",
+      "SourceId": "ASM_CS4",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\",
+      "BasePath": "_content/ASM_CS4",
+      "RelativePath": "LayoutAdmin/img/bg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\LayoutAdmin\\img\\bg.jpg"
     },
     {
       "Identity": "E:\\FPT Polytechnic\\C#4\\ASM_CS4\\ASM_CS4\\wwwroot\\LayoutAdmin\\img\\face.png",

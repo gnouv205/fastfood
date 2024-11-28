@@ -128,6 +128,47 @@ namespace ASM_CS4.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("ASM_CS4.Models.ChiTietDonDatHang", b =>
+                {
+                    b.Property<string>("MaChiTiet")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Gia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("MaKhachHang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MaSanPham")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("NgayGiao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayNhan")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayThanhToan")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TrangThai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaChiTiet");
+
+                    b.HasIndex("MaKhachHang");
+
+                    b.HasIndex("MaSanPham");
+
+                    b.ToTable("ChiTietDonDatHangs");
+                });
+
             modelBuilder.Entity("ASM_CS4.Models.Customer", b =>
                 {
                     b.Property<string>("MaKhachHang")
@@ -150,7 +191,8 @@ namespace ASM_CS4.Migrations
 
                     b.Property<string>("MatKhau")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("TenKhachHang")
                         .IsRequired()
@@ -233,6 +275,25 @@ namespace ASM_CS4.Migrations
                         .IsRequired();
 
                     b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ASM_CS4.Models.ChiTietDonDatHang", b =>
+                {
+                    b.HasOne("ASM_CS4.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("MaKhachHang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ASM_CS4.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("MaSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Product");
                 });

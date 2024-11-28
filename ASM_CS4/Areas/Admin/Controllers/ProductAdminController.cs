@@ -1,4 +1,5 @@
 ﻿using ASM_CS4.Data;
+using ASM_CS4.Filters;
 using ASM_CS4.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ASM_CS4.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AdminAuthorize]
     public class ProductAdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,15 +20,22 @@ namespace ASM_CS4.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // Hiển thị danh sách sản phẩm
-        public async Task<IActionResult> Index()
-        {
-            var products = await _context.Products.ToListAsync();
-            return View(products);
-        }
+		// Hiển thị danh sách sản phẩm
+		// Hiển thị danh sách sản phẩm hoặc kết quả tìm kiếm
+		public async Task<IActionResult> Index(string searchQuery)
+		{
+			var products = _context.Products.AsQueryable();
 
-        #region Create
-        [HttpGet]
+			if (!string.IsNullOrEmpty(searchQuery))
+			{
+				products = products.Where(p => p.TenSanPham.Contains(searchQuery)); // Tìm kiếm theo tên sản phẩm
+			}
+
+			return View(await products.ToListAsync());
+		}
+
+		#region Create
+		[HttpGet]
         public async Task<IActionResult> Create()
         {
             // Lấy danh sách các danh mục từ cơ sở dữ liệu

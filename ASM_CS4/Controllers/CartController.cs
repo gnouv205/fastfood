@@ -9,9 +9,11 @@ namespace ASM_CS4.Controllers
 	public class CartController : Controller
 	{
 		private readonly ApplicationDbContext _context;
+		private GetCountCart getCountCart;
 		public CartController(ApplicationDbContext context)
 		{
 			_context = context;
+			getCountCart=new GetCountCart(context); 
 		}
 		[HttpGet]
 		public IActionResult Cart()
@@ -30,21 +32,9 @@ namespace ASM_CS4.Controllers
 				.ToList();
 
 			// Đặt giá trị cho ViewBag.CartItemCount
-			ViewBag.CartItemCount = GetCartItemCount(customerMa);
+			ViewBag.CartItemCount = getCountCart.GetCartItemCount(customerMa);
 
 			return View(cartItems);
-		}
-		public int GetCartItemCount(string customerMa)
-		{
-			if (string.IsNullOrEmpty(customerMa))
-			{
-				return 0;
-			}
-
-			// Lấy tổng số lượng sản phẩm trong giỏ hàng của khách hàng
-			return _context.Carts
-						   .Where(c => c.MaKhachHang == customerMa)
-						   .Sum(c => c.SoLuong);
 		}
 
 
@@ -93,7 +83,7 @@ namespace ASM_CS4.Controllers
                 cart.SoLuong += quantity;
                 cart.TongTien = product.GiaSanPham * cart.SoLuong;
             }
-			ViewBag.CartItemCount = GetCartItemCount(customerMa);
+
 
 			await _context.SaveChangesAsync();
             
@@ -101,6 +91,48 @@ namespace ASM_CS4.Controllers
             return RedirectToAction("Index", "Home");
 		}
 
+		public IActionResult Delete(string maSP)
+		{
+			var customerMa = HttpContext.Session.GetString("CustomerMa");
+
+			if (string.IsNullOrEmpty(customerMa))
+			{
+				return RedirectToAction("Login", "Customer");
+			}
+
+			// Lấy thông tin sản phẩm từ bảng Products (để hiển thị)
+			var product = _context.Products.FirstOrDefault(p => p.MaSanPham == maSP);
+
+			if (product == null)
+			{
+				return RedirectToAction("Cart");
+			}
+
+			return View(product); // Trả về view Delete (trang xác nhận xóa)
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirm(string maSP)
+		{
+			var customerMa = HttpContext.Session.GetString("CustomerMa");
+
+			if (string.IsNullOrEmpty(customerMa))
+			{
+				return RedirectToAction("Login", "Customer");
+			}
+
+			// Tìm bản ghi trong bảng Carts
+			var cartItem = _context.Carts.FirstOrDefault(c => c.MaKhachHang == customerMa && c.MaSanPham == maSP);
+
+			if (cartItem != null)
+			{
+				_context.Carts.Remove(cartItem); // Xóa bản ghi khỏi bảng Carts
+				await _context.SaveChangesAsync(); // Lưu thay đổi vào CSDL
+			}
+
+			return RedirectToAction("Cart"); // Quay lại trang giỏ hàng
+		}
 
 	}
 

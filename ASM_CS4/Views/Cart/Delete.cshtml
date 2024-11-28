@@ -1,0 +1,12 @@
+﻿@model ASM_CS4.Models.Product
+
+<div class="container">
+    <h2>Xác nhận xóa</h2>
+    <p>Bạn có chắc muốn xóa sản phẩm <strong>@Model.TenSanPham</strong> khỏi giỏ hàng không?</p>
+
+    <form asp-action="DeleteConfirm" method="post">
+        <input type="hidden" name="maSP" value="@Model.MaSanPham" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Cart" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

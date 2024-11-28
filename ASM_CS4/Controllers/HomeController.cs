@@ -13,15 +13,19 @@ namespace ASM_CS4.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly GetCountCart getCountCart;
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
+            getCountCart = new GetCountCart(context);
         }
 
 		public IActionResult Index(int? page)
 		{
 			// Lấy thông tin tên khách hàng từ Session
-			ViewBag.CustomerName = HttpContext.Session.GetString("CustomerName");
+            var user = HttpContext.Session.GetString("CustomerName");
+            var userMa = HttpContext.Session.GetString("customerMa");
+			ViewBag.CustomerName = user;
 
 			// Cấu hình phân trang
 			int pageSize = 8; // Số sản phẩm mỗi trang
@@ -31,6 +35,8 @@ namespace ASM_CS4.Controllers
 			var products = _context.Products
 										 .OrderBy(p => p.MaSanPham)
 										 .ToPagedList(pageNumber, pageSize);
+
+			ViewBag.CartItemCount = getCountCart.GetCartItemCount(userMa);
 
 			// Trả về View với Model là danh sách sản phẩm đã phân trang
 			return View(products);

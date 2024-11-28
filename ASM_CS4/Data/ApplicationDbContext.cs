@@ -8,23 +8,25 @@ namespace ASM_CS4.Data
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
-
+			
 		}
-		public DbSet<Admin> Admins { get; set; }
+		public DbSet<UserAdmin> Admins { get; set; }
 		public DbSet<Customer> Customers { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Cart> Carts { get; set; }
 		public DbSet<CartDetail> CartDetails { get; set; }
+        public DbSet<ChiTietDonDatHang> ChiTietDonDatHangs { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			// Cấu hình các khóa chính
-			modelBuilder.Entity<Admin>().HasKey(a => a.MaAdmin);
+			modelBuilder.Entity<UserAdmin>().HasKey(a => a.MaAdmin);
 			modelBuilder.Entity<Customer>().HasKey(c => c.MaKhachHang);
 			modelBuilder.Entity<Category>().HasKey(c => c.MaDanhMuc);
 			modelBuilder.Entity<Product>().HasKey(p => p.MaSanPham);
 			modelBuilder.Entity<Cart>().HasKey(c => c.MaGioHang);
 			modelBuilder.Entity<CartDetail>().HasKey(cd => cd.MaChiTiet);
+			modelBuilder.Entity<ChiTietDonDatHang>().HasKey(cd => cd.MaChiTiet);
 
 			// Quan hệ giữa Product và Category (1-N)
 			modelBuilder.Entity<Product>()
@@ -58,6 +60,8 @@ namespace ASM_CS4.Data
 				.HasOne(c => c.Product)
 				.WithMany()
 				.HasForeignKey(c => c.MaSanPham);
+
+			
 		}
 	}
 }

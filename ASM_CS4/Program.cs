@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Cấu hình dịch vụ Localization
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+
 // Thêm dịch vụ vào container.
 builder.Services.AddControllersWithViews();
 
@@ -18,9 +19,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Cấu hình session và cookie
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian chờ hết hạn
-    options.Cookie.HttpOnly = true; // Chỉ truy cập được qua HTTP
-    options.Cookie.IsEssential = true; // Đảm bảo cookie cần thiết cho ứng dụng
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true; 
 });
 
 var app = builder.Build();

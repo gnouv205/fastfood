@@ -286,3 +286,4 @@ E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4\obj\Debug\net8.0\ref\ASM_CS4.dll
 E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4\bin\Debug\net8.0\X.PagedList.dll
 E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4\obj\Debug\net8.0\ASM_CS4.MvcApplicationPartsAssemblyInfo.cs
+E:\FPT Polytechnic\C#4\ASM_CS4\ASM_CS4\obj\Debug\net8.0\ASM_CS4.sourcelink.json

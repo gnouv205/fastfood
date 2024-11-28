@@ -1,0 +1,141 @@
+﻿@model List<ASM_CS4.Models.UserAdmin>
+
+@{
+	ViewData["Title"] = "Admin List"; // Tiêu đề của trang
+	Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; // Chỉ định layout nếu cần
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+	/* Thiết lập chung cho bảng */
+	.table {
+		width: 100%; /* Chiều rộng của bảng */
+		margin-bottom: 1rem; /* Khoảng cách dưới bảng */
+		background-color: transparent; /* Màu nền bảng */
+	}
+
+	/* Thiết lập cho hàng bảng */
+	.table-bordered th,
+	.table-bordered td {
+		border: 1px solid #dee2e6; /* Viền cho các ô */
+	}
+
+	/* Thiết lập cho tiêu đề bảng */
+	.table thead th {
+		background-color: #007bff; /* Màu nền cho tiêu đề */
+		color: white; /* Màu chữ cho tiêu đề */
+		text-align: center; /* Căn giữa chữ trong tiêu đề */
+	}
+
+	/* Thiết lập cho các ô trong bảng */
+	.table tbody td {
+		text-align: center; /* Căn giữa chữ trong các ô */
+		vertical-align: middle; /* Căn giữa theo chiều dọc */
+	}
+
+	/* Thiết lập cho các nút trong bảng */
+	.link-success {
+		color: #28a745; /* Màu chữ cho nút thành công */
+		text-decoration: none; /* Ẩn gạch chân */
+	}
+
+		/* Hiệu ứng hover cho nút */
+		.link-success:hover {
+			text-decoration: underline; /* Gạch chân khi hover */
+		}
+
+	/* Thiết lập cho nút xóa */
+	.link-danger {
+		color: #dc3545; /* Màu chữ cho nút nguy hiểm */
+		text-decoration: none; /* Ẩn gạch chân */
+	}
+
+		/* Hiệu ứng hover cho nút xóa */
+		.link-danger:hover {
+			text-decoration: underline; /* Gạch chân khi hover */
+		}
+
+	/* Thiết lập cho tiêu đề card */
+	.card-title {
+		font-size: 1.5rem; /* Kích thước chữ cho tiêu đề card */
+		margin: 0; /* Bỏ khoảng cách */
+	}
+
+	/* Thiết lập cho các ô input trong bảng */
+	.text-nowrap {
+		white-space: nowrap; /* Không xuống dòng */
+	}
+
+	/* Thiết lập cho các thông báo */
+	.text-danger {
+		font-size: 0.875em; /* Kích thước chữ cho thông báo lỗi */
+		margin-top: 5px; /* Khoảng cách trên thông báo lỗi */
+	}
+
+	/* Hiệu ứng cho card */
+	.card {
+		border: 1px solid #dee2e6; /* Viền cho card */
+		border-radius: 0.25rem; /* Bo góc cho card */
+		box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); /* Hiệu ứng bóng */
+	}
+
+	/* Thiết lập khoảng cách giữa các phần tử */
+	.card-body {
+		padding: 1.25rem; /* Padding cho body của card */
+	}
+</style>
+
+
+
+<div style="width:1200px" class="card card-info card-outline">
+	<div class="card-header">
+		<div class="row">
+			<div class="col-md">
+				<h3 class="card-title">Danh sách Admin</h3> <!-- Tiêu đề danh sách -->
+			</div>
+			<div class="col-md-auto">
+				<a asp-area="Admin" asp-controller="AccountAdmin" asp-action="Create" type="button" class="btn btn-info">
+					<i class="fa-solid fa-plus me-1"></i> Thêm mới
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table id="tbl" class="table table-bordered">
+				<thead>
+					<tr>
+
+						<th>Hành Động</th>
+						<th>Mã Admin</th>
+						<th>Email Admin</th>
+						<th>Mật Khẩu</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var ad in Model)
+					{
+						<tr id="@ad.MaAdmin">
+							<td class="text-nowrap bg-light">
+
+								<a asp-area="Admin" asp-controller="AccountAdmin" asp-action="Edit" asp-route-maAd="@ad.MaAdmin" class="me-1 link-success" title="Chỉnh sửa">
+									<i class="bi bi-pencil-fill"></i> <!-- Biểu tượng chỉnh sửa -->
+									Chỉnh sửa
+								</a>
+
+								<a asp-area="Admin" asp-controller="AccountAdmin" asp-action="Delete" asp-route-maAd="@ad.MaAdmin" class="link-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" title="Xóa">
+									<i class="bi bi-trash-fill"></i> <!-- Biểu tượng xóa -->
+									Xóa
+								</a>
+							</td>
+
+							<td>@ad.MaAdmin</td>
+							<td>@ad.Email</td>
+							<td>@ad.MatKhau</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div> <!-- /.card-body -->
+</div> <!-- /.card -->
