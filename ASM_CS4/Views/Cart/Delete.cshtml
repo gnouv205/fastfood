@@ -1,5 +1,71 @@
 ﻿@model ASM_CS4.Models.Product
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 25px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #dc3545;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    strong {
+        color: #333;
+    }
+
+    button, .btn {
+        width: 120px;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .btn-danger {
+        background: #dc3545;
+        color: white;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+</style>
 <div class="container">
     <h2>Xác nhận xóa</h2>
     <p>Bạn có chắc muốn xóa sản phẩm <strong>@Model.TenSanPham</strong> khỏi giỏ hàng không?</p>

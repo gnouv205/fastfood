@@ -1,0 +1,9 @@
+﻿# Loại bỏ thư mục build và cache
+bin/
+obj/
+.vs/
+.dbtcache.v2
+
+# Loại bỏ file log và dữ liệu tạm
+*.log
+*.testlog

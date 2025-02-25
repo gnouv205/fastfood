@@ -1,0 +1,38 @@
+﻿@using ASM_CS4.ViewModels
+@model UsersInRoleViewModel
+
+@{
+    ViewData["Title"] = "Người dùng trong vai trò " + Model.RoleName;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<h2>Danh sách người dùng trong vai trò: @Model.RoleName</h2>
+
+@if (Model.Users.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-action="EditRole" asp-route-userId="@user.Id" class="btn btn-warning">Chỉnh sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có người dùng nào trong vai trò này.</p>
+}
+<a asp-action="ManageRoles" class="btn btn-secondary">Quay lại</a>

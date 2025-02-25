@@ -1,0 +1,28 @@
+﻿@using ASM_CS4.ViewModels
+@model RoleViewModel
+@{
+    ViewData["Title"] = "Thêm Vai Trò Mới";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm Vai Trò Mới</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="CreateRole" method="post">
+    <div class="form-group">
+        <label for="RoleName">Tên Vai Trò</label>
+        <input asp-for="RoleName" class="form-control" />
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Thêm Vai Trò</button>
+    <a asp-action="ManageRoles" class="btn btn-secondary mt-3">Quay Lại</a>
+</form>

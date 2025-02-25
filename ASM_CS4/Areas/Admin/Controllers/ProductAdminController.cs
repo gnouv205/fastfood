@@ -1,187 +1,212 @@
 ﻿using ASM_CS4.Data;
-using ASM_CS4.Filters;
 using ASM_CS4.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace ASM_CS4.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminAuthorize]
+    [Authorize(Roles = "Admin")]
+
     public class ProductAdminController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly HttpClient _httpClient;
+        private readonly string _apiUrl = "https://localhost:44304/api/ProductApi";
 
-        public ProductAdminController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public ProductAdminController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, HttpClient httpClient)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _httpClient = httpClient;
         }
 
-		// Hiển thị danh sách sản phẩm
-		// Hiển thị danh sách sản phẩm hoặc kết quả tìm kiếm
-		public async Task<IActionResult> Index(string searchQuery)
-		{
-			var products = _context.Products.AsQueryable();
+        public async Task<IActionResult> Index(string searchProduct = "")
+        {
+            var response = await _httpClient.GetAsync($"{_apiUrl}?searchProduct={searchProduct}");
+            if (!response.IsSuccessStatusCode) return View(new List<Product>());
 
-			if (!string.IsNullOrEmpty(searchQuery))
-			{
-				products = products.Where(p => p.TenSanPham.Contains(searchQuery)); // Tìm kiếm theo tên sản phẩm
-			}
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<Product>>(jsonResponse);
 
-			return View(await products.ToListAsync());
-		}
+            ViewBag.SearchProduct = searchProduct;
+            return View(products);
+        }
+        // 🔹 Hiển thị chi tiết sản phẩm
+        public async Task<IActionResult> Details(string id)
+        {
+            var response = await _httpClient.GetAsync($"{_apiUrl}/{id}");
+            if (!response.IsSuccessStatusCode) return NotFound();
 
-		#region Create
-		[HttpGet]
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Product>(jsonResponse);
+
+            return View(product);
+        }
+
+        // 🔹 Hiển thị form thêm sản phẩm
         public async Task<IActionResult> Create()
         {
-            // Lấy danh sách các danh mục từ cơ sở dữ liệu
-            ViewBag.DanhMuc = new SelectList(await _context.Categories.ToListAsync(), "MaDanhMuc", "TenDanhMuc");
+            ViewBag.DanhMuc = await GetDanhMucSelectList();
             return View();
         }
 
+        // 🔹 Xử lý thêm sản phẩm
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile uploadedFile)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                if (uploadedFile != null && uploadedFile.Length > 0)
+                return View(product);
+            }
+
+            if (uploadedFile != null && uploadedFile.Length > 0)
+            {
+                // 🏷 Tạo đường dẫn thư mục lưu ảnh
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
+
+                // ✅ Đảm bảo thư mục tồn tại
+                if (!Directory.Exists(uploadsFolder))
                 {
-                    var fileName = Path.GetFileName(uploadedFile.FileName);
-                    var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/LayoutUser/img/product", fileName);
-
-                    using (var fileStream = new FileStream(uploadPath, FileMode.Create))
-                    {
-                        await uploadedFile.CopyToAsync(fileStream);
-                    }
-
-                    product.HinhSanPham = "/LayoutUser/img/product/" + fileName;
+                    Directory.CreateDirectory(uploadsFolder);
                 }
 
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                // 🏷 Tạo tên file duy nhất để tránh trùng lặp
+                var uniqueFileName = $"{Guid.NewGuid()}_{uploadedFile.FileName}";
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                return RedirectToAction(nameof(Index));
+                // ✅ Lưu file vào server
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                // ✅ Cập nhật đường dẫn ảnh trong database
+                product.HinhSanPham = "/images/products/" + uniqueFileName;
+            }
+            else
+            {
+                product.HinhSanPham = "/images/products/default.jpg"; // Ảnh mặc định nếu không chọn file
             }
 
-            // Trả lại danh sách danh mục nếu ModelState không hợp lệ
-            ViewBag.DanhMuc = new SelectList(await _context.Categories.ToListAsync(), "MaDanhMuc", "TenDanhMuc");
-            return View(product);
+            // ✅ Gửi dữ liệu sản phẩm đến API
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(_apiUrl, jsonContent);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return View(product);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        #endregion
 
-        #region Edit
-        [HttpGet]
-        public async Task<IActionResult> Edit(string? maSP)
+        // 🔹 Hiển thị form cập nhật sản phẩm
+        public async Task<IActionResult> Edit(string maSanPham)
         {
-            if (maSP == null)
-            {
-                return NotFound();
-            }
+            var response = await _httpClient.GetAsync($"{_apiUrl}/{maSanPham}");
+            if (!response.IsSuccessStatusCode) return NotFound();
 
-            var product = await _context.Products.FindAsync(maSP);
-            if (product == null)
-            {
-                return NotFound();
-            }
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Product>(jsonResponse);
 
+            ViewBag.DanhMucs = await GetDanhMucSelectList();
             return View(product);
         }
 
+        // 🔹 Xử lý cập nhật sản phẩm
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Product product, IFormFile? uploadedFile)
+        public async Task<IActionResult> Edit([FromForm] string maSanPham, [FromForm] Product product)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(maSanPham))
             {
-                var existingProduct = await _context.Products.FindAsync(product.MaSanPham);
-                if (existingProduct == null)
-                {
-                    return NotFound();
-                }
-
-                existingProduct.TenSanPham = product.TenSanPham;
-                existingProduct.GiaSanPham = product.GiaSanPham;
-                existingProduct.SoLuongSanPham = product.SoLuongSanPham;
-                existingProduct.MoTaSanPham = product.MoTaSanPham;
-                existingProduct.TrangThai = product.TrangThai;
-                existingProduct.MaDanhMuc = product.MaDanhMuc;
-
-                // Chỉ cập nhật ảnh nếu người dùng tải ảnh mới
-                if (uploadedFile != null && uploadedFile.Length > 0)
-                {
-                    // Xóa ảnh cũ nếu tồn tại
-                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, existingProduct.HinhSanPham.TrimStart('/'));
-                    if (System.IO.File.Exists(oldImagePath))
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-
-                    // Lưu ảnh mới
-                    var fileName = Path.GetFileName(uploadedFile.FileName);
-                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "LayoutUser/img", fileName);
-                    using (var fileStream = new FileStream(uploadPath, FileMode.Create))
-                    {
-                        await uploadedFile.CopyToAsync(fileStream);
-                    }
-
-                    // Cập nhật đường dẫn ảnh mới
-                    existingProduct.HinhSanPham = "/LayoutUser/img/product/" + fileName;
-                }
-
-                // Cập nhật vào cơ sở dữ liệu
-                _context.Products.Update(existingProduct);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Sản phẩm đã được cập nhật!";
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Mã sản phẩm không được để trống.");
+                return View(product);
             }
+
+            // Đóng gói đúng dữ liệu gửi API
+            var productDto = new
+            {
+                MaSanPham = product.MaSanPham,
+                TenSanPham = product.TenSanPham,
+                MoTaSanPham = product.MoTaSanPham,
+                SoLuongSanPham = product.SoLuongSanPham,
+                GiaSanPham = product.GiaSanPham,
+                TrangThai = product.TrangThai,
+                MaDanhMuc = string.IsNullOrEmpty(product.MaDanhMuc) ? null : product.MaDanhMuc
+            };
+
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(productDto), Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{_apiUrl}/{maSanPham}", jsonContent);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ModelState.AddModelError("", "Cập nhật sản phẩm thất bại.");
+                return View(product);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+        // 🔹 Xác nhận xóa sản phẩm
+
+        public async Task<IActionResult> Delete(string maSanPham)
+        {
+            var response = await _httpClient.GetAsync($"{_apiUrl}/{maSanPham}");
+            if (!response.IsSuccessStatusCode) return NotFound();
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            var product = JsonConvert.DeserializeObject<Product>(jsonResponse);
 
             return View(product);
         }
-
-        #endregion
-
-        #region Delete
-        [HttpGet]
-        public IActionResult Delete(string maSP)
-        {
-            var product = _context.Products.Find(maSP);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
+        // 🔹 Xử lý xóa sản phẩm
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(string maSP)
+        [ActionName("DeleteConfirmed")]
+        public async Task<IActionResult> DeleteConfirmed(string maSanPham)
         {
-            var product = _context.Products.Find(maSP);
-            if (product != null)
+            if (string.IsNullOrEmpty(maSanPham))
             {
-                // Xóa file ảnh
-                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, product.HinhSanPham.TrimStart('/'));
-                if (System.IO.File.Exists(imagePath))
-                {
-                    System.IO.File.Delete(imagePath);
-                }
-
-                // Xóa sản phẩm trong database
-                _context.Products.Remove(product);
-                _context.SaveChanges();
-                TempData["SuccessMessage"] = "Sản phẩm đã được xóa!";
-                return RedirectToAction(nameof(Index));
+                return BadRequest(new { message = "Mã sản phẩm không hợp lệ." });
             }
 
-            return NotFound();
+            var response = await _httpClient.DeleteAsync($"{_apiUrl}/{maSanPham}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                return BadRequest(new { message = "Lỗi khi xóa sản phẩm: " + error });
+            }
+
+            return RedirectToAction(nameof(Index));
         }
-        #endregion
+
+
+        private async Task<List<SelectListItem>> GetDanhMucSelectList()
+        {
+            var danhMucList = await _context.Categories
+                .Select(dm => new SelectListItem
+                {
+                    Value = dm.MaDanhMuc.ToString(),
+                    Text = dm.TenDanhMuc
+                })
+                .ToListAsync();
+
+            return danhMucList;
+        }
+
+
+
     }
 }

@@ -1,0 +1,161 @@
+﻿@model List<ASM_CS4.Models.Cart>
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* General styles for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* Heading styles */
+h2 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Table styles */
+.table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #555;
+}
+
+.table td {
+    background-color: #fff;
+    color: #555;
+    vertical-align: middle;
+}
+
+/* Product image styling */
+.table td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+/* Alternating row colors */
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Action button styles */
+.btn-danger, .btn-success {
+    display: inline-block;
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+
+</style>
+
+
+<h2>Giỏ hàng</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success" style="width: 90%; margin: 10px auto; text-align: center;">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger" style="width: 90%; margin: 10px auto; text-align: center;">
+        @TempData["Error"]
+    </div>
+}
+
+@if (!Model.Any())
+{
+    <p>Giỏ hàng của bạn đang trống.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hình sản phẩm</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> <img src="@Url.Content(item.Product.HinhSanPham)" /></td>
+                    <td>@item.Product.TenSanPham</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.Product.GiaSanPham.ToString("C")</td>
+                    <td>@((item.SoLuong * item.Product.GiaSanPham))</td>
+                    <td>
+                        <a asp-controller="Cart" asp-action="Delete" asp-route-maSP="@item.MaSanPham" class="btn btn-danger">Xóa</a>
+                        <form asp-controller="Cart" asp-action="ConfirmCheckout" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-success">Thanh toán</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
