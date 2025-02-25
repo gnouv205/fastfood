@@ -1,0 +1,32 @@
+﻿@using ASM_CS4.ViewModels
+@model CustomerViewModel
+
+@{
+    ViewData["Title"] = "Cập nhật vai trò";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card card-info card-outline" style="width:600px">
+    <div class="card-header">
+        <h3 class="card-title">Cập nhật vai trò cho @Model.Email</h3>
+    </div>
+
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="AccountAdmin" asp-action="UpdateRole" method="post">
+            <input type="hidden" name="userId" value="@Model.AspNetUserId" />
+
+            <div class="mb-3">
+                <label class="form-label">Vai trò:</label>
+                <select name="newRole" class="form-control">
+                    <option value="Admin" selected="@(Model.Role == "Admin" ? "selected" : null)">Admin</option>
+                    <option value="User" selected="@(Model.Role == "User" ? "selected" : null)">User</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        </form>
+
+
+    </div>
+</div>

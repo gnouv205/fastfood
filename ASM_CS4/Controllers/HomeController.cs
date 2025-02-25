@@ -1,8 +1,10 @@
 ﻿using ASM_CS4.Data;
 using ASM_CS4.Models;
+using ASM_CS4.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 using X.PagedList;
 using X.PagedList.Extensions;
 using X.PagedList.Mvc.Core;
@@ -14,35 +16,55 @@ namespace ASM_CS4.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly GetCountCart getCountCart;
+
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
             getCountCart = new GetCountCart(context);
         }
 
-		public IActionResult Index(int? page)
-		{
-			// Lấy thông tin tên khách hàng từ Session
-            var user = HttpContext.Session.GetString("CustomerName");
-            var userMa = HttpContext.Session.GetString("customerMa");
-			ViewBag.CustomerName = user;
+        public IActionResult TestSession()
+        {
+            string customerMa = HttpContext.Session.GetString("CustomerMa");
+            string userName = HttpContext.Session.GetString("UserName");
 
-			// Cấu hình phân trang
-			int pageSize = 8; // Số sản phẩm mỗi trang
-			int pageNumber = page ?? 1; // Trang hiện tại (mặc định là trang 1)
+            Console.WriteLine($"🔍 Kiểm tra session ở trang khác: CustomerMa = {customerMa}, UserName = {userName}");
 
-			// Lấy danh sách sản phẩm có phân trang
-			var products = _context.Products
-										 .OrderBy(p => p.MaSanPham)
-										 .ToPagedList(pageNumber, pageSize);
+            return Content($"CustomerMa: {customerMa}, UserName: {userName}");
+        }
 
-			ViewBag.CartItemCount = getCountCart.GetCartItemCount(userMa);
+        public IActionResult Index(int? page, string searchProduct)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = HttpContext.Session.GetString("UserName");
 
-			// Trả về View với Model là danh sách sản phẩm đã phân trang
-			return View(products);
-		}
+            var findProduct = _context.Products.AsQueryable();
 
-		public async Task<IActionResult> Details(string maSP)
+            if (!string.IsNullOrEmpty(searchProduct))
+            {
+                findProduct = findProduct.Where(p => p.TenSanPham.Contains(searchProduct));
+            }
+
+            ViewBag.CustomerName = string.IsNullOrEmpty(userName) ? "Khách" : userName;
+
+            int pageSize = 8;
+            int pageNumber = page ?? 1;
+
+            var products = findProduct
+                                .OrderBy(p => p.MaSanPham)
+                                .ToPagedList(pageNumber, pageSize);
+
+            if (!products.Any())
+            {
+                ViewBag.Message = "Không có sản phẩm nào";
+            }
+
+            ViewBag.CartItemCount = !string.IsNullOrEmpty(userId) ? getCountCart.GetCartItemCount(userId) : 0;
+
+            return View(products);
+        }
+
+        public async Task<IActionResult> Details(string maSP)
         {
             // Lấy chi tiết sản phẩm theo ID
             var product = await _context.Products
@@ -58,3 +80,4 @@ namespace ASM_CS4.Controllers
 
     }
 }
+

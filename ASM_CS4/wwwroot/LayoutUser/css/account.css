@@ -1,0 +1,48 @@
+﻿.account-container {
+    background-image: url('/LayoutUser/img/login/bg-1.jpg');
+    background-position: center;
+    background-size: cover; /* Đảm bảo ảnh nền phủ kín */
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.account-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Màu trắng với độ trong suốt 80% */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+}
+.input-group {
+    position: relative;
+}
+
+    .input-group .form-control {
+        padding-right: 2.5rem; /* Chừa khoảng trống cho nút con mắt */
+    }
+
+    .input-group .btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+        .input-group .btn i {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .input-group .btn:hover i {
+            color: #000;
+        }
+

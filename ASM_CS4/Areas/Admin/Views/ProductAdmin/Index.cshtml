@@ -5,111 +5,171 @@
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 <style>
-	/* General Card Styles */
-	.card {
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		margin-bottom: 20px;
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	}
+    /* General Card Styles */
+    .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease-in-out;
+    }
 
-	/* Card Header Styles */
-	.card-header {
-		background-color: #17a2b8;
-		color: white;
-		padding: 10px 20px;
-		font-size: 1.1rem;
-	}
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-	/* Button Styles */
-	.btn-info {
-		background-color: #17a2b8;
-		border-color: #17a2b8;
-	}
+    /* Card Header Styles */
+    .card-header {
+        background: linear-gradient(135deg, #17a2b8, #138496);
+        color: white;
+        font-size: 1.2rem;
+        padding: 15px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-		.btn-info:hover {
-			background-color: #138496;
-			border-color: #117a8b;
-		}
+    /* Search Input */
+    form {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-		.btn-info .fa-plus {
-			margin-right: 5px;
-		}
+        form input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            font-size: 1rem;
+        }
 
-	/* Table Styles */
-	.table {
-		width: 100%;
-		border-collapse: collapse;
-		margin-top: 20px;
-	}
+        form button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #17a2b8;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-		.table th, .table td {
-			padding: 12px 15px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
+            form button:hover {
+                background-color: #117a8b;
+            }
 
-		.table th {
-			background-color: #f8f9fa;
-			color: #495057;
-		}
+    /* Button Styles */
+    .btn-info {
+        background: linear-gradient(135deg, #17a2b8, #138496);
+        border: none;
+        border-radius: 6px;
+        padding: 10px 15px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
 
-		.table td {
-			vertical-align: middle;
-		}
+        .btn-info:hover {
+            background: linear-gradient(135deg, #138496, #117a8b);
+        }
 
-		.table .text-nowrap {
-			white-space: nowrap;
-		}
+    /* Table Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+    }
 
-		.table img {
-			width: 100px;
-			height: auto;
-		}
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
 
-		/* Hover Effects for Table Rows */
-		.table tbody tr:hover {
-			background-color: #f1f1f1;
-		}
+        .table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+            text-transform: uppercase;
+        }
 
-		/* Action Column Styles */
-		.table .link-success, .table .link-danger {
-			color: #28a745;
-			text-decoration: none;
-		}
+        .table td {
+            vertical-align: middle;
+        }
 
-			.table .link-success:hover {
-				color: #218838;
-			}
+        /* Image Styling */
+        .table img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
 
-		.table .link-danger {
-			color: #dc3545;
-		}
+            .table img:hover {
+                transform: scale(1.1);
+            }
 
-			.table .link-danger:hover {
-				color: #c82333;
-			}
+        /* Hover Effects for Table Rows */
+        .table tbody tr {
+            transition: background 0.3s ease-in-out;
+        }
 
-	/* Responsive Table Styling */
-	.table-responsive {
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-	}
+            .table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
 
-	/* Admin Table Header Styling */
-	.card-header .row {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+        /* Action Column Styles */
+        .table .link-success, .table .link-danger {
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
 
-	.card-header .col-md-auto {
-		text-align: right;
-	}
+        .table .link-success {
+            color: #28a745;
+        }
+
+            .table .link-success:hover {
+                color: #218838;
+                transform: scale(1.1);
+            }
+
+        .table .link-danger {
+            color: #dc3545;
+        }
+
+            .table .link-danger:hover {
+                color: #c82333;
+                transform: scale(1.1);
+            }
+
+    /* Responsive Table Styling */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Admin Table Header Styling */
+    .card-header .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-header .col-md-auto {
+        text-align: right;
+    }
+
 
 </style>
 
-
+<form method="get">
+	<input type="text" name="searchProduct" placeholder="Tìm sản phẩm..." value="@ViewBag.SearchProduct" />
+	<button type="submit">Tìm kiếm</button>
+</form>
 <div class="card card-info card-outline">
 	<div class="card-header">
 		<div class="row">
@@ -142,14 +202,13 @@
 					{
 						<tr id="@product.MaSanPham">
 							<td class="text-nowrap bg-light">
-								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Edit" asp-route-maSP="@product.MaSanPham"
-								   class="me-1 link-success"><i class="fa-solid fa-edit"></i></a>
+                                <a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Edit" asp-route-maSanPham="@product.MaSanPham"
+                                   class="me-1 link-success"><i class="fa-solid fa-edit"></i></a>
 
-								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="Delete"
-								   asp-route-maSP="@product.MaSanPham" class="link-danger">
-									<i class="fa-solid fa-trash"></i>
-								</a>
 
+                                <a asp-action="Delete" asp-route-maSanPham="@product.MaSanPham" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+
+                                
 							</td>
 
 							<td>@product.MaSanPham</td>
@@ -166,5 +225,6 @@
 				</tbody>
 			</table>
 		</div>
-	</div> <!-- /.card-body -->
-</div> <!-- /.card -->
+	</div>
+</div> 
+

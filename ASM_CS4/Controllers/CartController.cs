@@ -2,138 +2,230 @@
 using ASM_CS4.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design.Internal;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ASM_CS4.Controllers
 {
-	public class CartController : Controller
-	{
-		private readonly ApplicationDbContext _context;
-		private GetCountCart getCountCart;
-		public CartController(ApplicationDbContext context)
-		{
-			_context = context;
-			getCountCart=new GetCountCart(context); 
-		}
+    public class CartController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+        private GetCountCart getCountCart;
+
+        public CartController(ApplicationDbContext context)
+        {
+            _context = context;
+            getCountCart = new GetCountCart(context);
+        }
+
 		[HttpGet]
-		public IActionResult Cart()
+		public IActionResult Index()
 		{
-			var customerMa = HttpContext.Session.GetString("CustomerMa");
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier); // ✅ Lấy ID của User từ Identity
+			var customerName = HttpContext.Session.GetString("UserName");
+
+			Console.WriteLine($"Cart - User ID (MaKhachHang): {customerMa}");
+			Console.WriteLine($"Cart - UserName: {customerName}");
 
 			if (string.IsNullOrEmpty(customerMa))
 			{
-				return RedirectToAction("Login", "Customer");
+				return RedirectToAction("Login", "Account");
 			}
 
-			// Tiến hành xử lý giỏ hàng
+			ViewBag.CustomerName = customerName ?? "Người dùng"; // ✅ Nếu null thì hiển thị mặc định
+
 			var cartItems = _context.Carts
 				.Where(c => c.MaKhachHang == customerMa)
 				.Include(c => c.Product)
 				.ToList();
 
-			// Đặt giá trị cho ViewBag.CartItemCount
-			ViewBag.CartItemCount = getCountCart.GetCartItemCount(customerMa);
+			// Kiểm tra nếu `getCountCart` có thể gây lỗi null
+			ViewBag.CartItemCount = getCountCart?.GetCartItemCount(customerMa) ?? 0;
 
 			return View(cartItems);
 		}
 
-
 		[HttpPost]
 		public async Task<IActionResult> AddToCart(string proId, int quantity = 1)
 		{
-			var customerMa = HttpContext.Session.GetString("CustomerMa");
-			var product = _context.Products.FirstOrDefault(p => p.MaSanPham == proId);
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier); // ✅ Lấy ID từ Identity
 
 			if (string.IsNullOrEmpty(customerMa))
 			{
-				return RedirectToAction("Login", "Customer");
+				return RedirectToAction("Login", "Account");
 			}
 
-			if (string.IsNullOrEmpty(proId))
-			{
-				ViewBag.ErrorMessage = "Mã sản phẩm không hợp lệ.";
-				return RedirectToAction("Index", "Home");
-			}
-
-			// Kiểm tra sản phẩm có tồn tại trong bảng Products không
+			var product = await _context.Products.FindAsync(proId);
 			if (product == null)
 			{
-				ViewBag.ErrorMessage = "Sản phẩm không tồn tại.";
-				return RedirectToAction("Index", "Home");
+				TempData["Error"] = "Sản phẩm không tồn tại!";
+				return RedirectToAction("Index", "Products");
 			}
 
-			// Lấy giỏ hàng của khách hàng hoặc tạo mới nếu chưa có
 			var cart = _context.Carts.FirstOrDefault(c => c.MaKhachHang == customerMa && c.MaSanPham == proId);
 			if (cart == null)
 			{
 				cart = new Cart()
 				{
 					MaGioHang = Guid.NewGuid().ToString(),
-					MaKhachHang = customerMa,
+					MaKhachHang = customerMa, // ✅ Giữ nguyên MãKhachHang nhưng lấy từ Identity
+					MaSanPham = proId,
 					SoLuong = quantity,
 					TongTien = product.GiaSanPham * quantity,
-					CreatedDate = DateTime.Now,
-					MaSanPham = proId
+					CreatedDate = DateTime.Now
 				};
-				_context.Carts.Add(cart);	
+				_context.Carts.Add(cart);
 			}
 			else
 			{
-                // Nếu giỏ hàng đã tồn tại, tăng số lượng và cập nhật tổng tiền
-                cart.SoLuong += quantity;
-                cart.TongTien = product.GiaSanPham * cart.SoLuong;
-            }
-
+				cart.SoLuong += quantity;
+				cart.TongTien = product.GiaSanPham * cart.SoLuong;
+			}
 
 			await _context.SaveChangesAsync();
-            
-
-            return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Home");
 		}
 
 		public IActionResult Delete(string maSP)
-		{
-			var customerMa = HttpContext.Session.GetString("CustomerMa");
+        {
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 			if (string.IsNullOrEmpty(customerMa))
-			{
-				return RedirectToAction("Login", "Customer");
-			}
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-			// Lấy thông tin sản phẩm từ bảng Products (để hiển thị)
-			var product = _context.Products.FirstOrDefault(p => p.MaSanPham == maSP);
+            var product = _context.Products.FirstOrDefault(p => p.MaSanPham == maSP);
 
-			if (product == null)
-			{
-				return RedirectToAction("Cart");
-			}
+            if (product == null)
+            {
+                return RedirectToAction("Cart");
+            }
 
-			return View(product); // Trả về view Delete (trang xác nhận xóa)
-		}
+            return View(product);
+        }
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirm(string maSP)
 		{
-			var customerMa = HttpContext.Session.GetString("CustomerMa");
+			if (string.IsNullOrEmpty(maSP))
+			{
+				return BadRequest("Mã sản phẩm không hợp lệ!");
+			}
+
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 			if (string.IsNullOrEmpty(customerMa))
 			{
-				return RedirectToAction("Login", "Customer");
+				return RedirectToAction("Login", "Account");
 			}
 
-			// Tìm bản ghi trong bảng Carts
-			var cartItem = _context.Carts.FirstOrDefault(c => c.MaKhachHang == customerMa && c.MaSanPham == maSP);
+			var cartItem = await _context.Carts
+				.FirstOrDefaultAsync(c => c.MaKhachHang == customerMa && c.MaSanPham == maSP);
 
-			if (cartItem != null)
+			if (cartItem == null)
 			{
-				_context.Carts.Remove(cartItem); // Xóa bản ghi khỏi bảng Carts
-				await _context.SaveChangesAsync(); // Lưu thay đổi vào CSDL
+				return NotFound("Sản phẩm không tồn tại trong giỏ hàng!");
 			}
 
-			return RedirectToAction("Cart"); // Quay lại trang giỏ hàng
+			_context.Carts.Remove(cartItem);
+			await _context.SaveChangesAsync();
+
+			return RedirectToAction("Index", "Cart");
 		}
 
-	}
 
+		[HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			if (string.IsNullOrEmpty(customerMa))
+            {
+                return RedirectToAction("Login", " Account");
+            }
+
+            var cartItems = await _context.Carts
+                .Where(c => c.MaKhachHang == customerMa)
+                .Include(c => c.Product)
+                .ToListAsync();
+
+            if (!cartItems.Any())
+            {
+                TempData["Error"] = "Giỏ hàng trống!";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            return View(cartItems);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmCheckout()
+        {
+			var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			if (string.IsNullOrEmpty(customerMa))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Lấy các sản phẩm từ giỏ hàng
+            var cartItems = await _context.Carts
+                .Where(c => c.MaKhachHang == customerMa)
+                .Include(c => c.Product)
+                .ToListAsync();
+
+            if (!cartItems.Any())
+            {
+                TempData["Error"] = "Giỏ hàng trống!";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            // Tạo các bản ghi trong bảng ChiTietDonDatHang
+            foreach (var item in cartItems)
+            {
+                var chiTietDonHang = new ChiTietDonDatHang
+                {
+                    MaChiTiet = Guid.NewGuid().ToString(),
+                    MaKhachHang = customerMa,
+                    MaSanPham = item.MaSanPham,
+                    SoLuong = item.SoLuong,
+                    Gia = item.Product.GiaSanPham * item.SoLuong,
+                    NgayGiao = DateTime.Now.AddDays(3), // Ví dụ: ngày giao hàng sau 3 ngày
+                    NgayNhan = DateTime.Now.AddDays(7), // Ví dụ: ngày nhận hàng sau 7 ngày
+                    NgayThanhToan = DateTime.Now,
+                    TrangThai = "Chờ xác nhận"
+                };
+                _context.ChiTietDonDatHangs.Add(chiTietDonHang);
+            }
+
+            // Xóa giỏ hàng sau khi đặt
+            _context.Carts.RemoveRange(cartItems);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đơn hàng của bạn đã được đặt thành công!";
+            return RedirectToAction("OrderPending");
+        }
+
+
+        [HttpGet]
+        public IActionResult OrderPending()
+        {
+            var customerMa = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(customerMa))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Lấy thông tin đơn hàng vừa đặt để hiển thị
+            var orders = _context.ChiTietDonDatHangs
+                .Where(o => o.MaKhachHang == customerMa && o.TrangThai == "Chờ xác nhận")
+                .Include(o => o.Product)
+                .ToList();
+
+            return View(orders);
+        }
+
+    }
 }

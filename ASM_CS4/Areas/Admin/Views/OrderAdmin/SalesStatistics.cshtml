@@ -1,0 +1,35 @@
+﻿@model List<dynamic>
+
+@{
+    ViewData["Title"] = "Thống kê doanh số";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thống kê doanh số</h2>
+
+@if (!Model.Any())
+{
+    <p>Chưa có dữ liệu doanh số để hiển thị.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng đã bán</th>
+                <th>Tổng doanh thu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.QuantitySold</td>
+                    <td>@item.TotalRevenue.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

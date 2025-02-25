@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="~/LayoutUser/css/style.css" type="text/css" />
 </head>
 
+@* <p>Trạng thái đăng nhập: @(User.Identity.IsAuthenticated ? "Đã đăng nhập" : "Chưa đăng nhập")</p>
+<p>Tên User: @User.Identity.Name</p>
+ *@
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -53,7 +56,7 @@
 				<span class="arrow_carrot-down"></span>
 				<ul>
 					<li><a href="#">Vietnamese</a></li>
-					<li><a href="#">English</a></li>
+					<div class="text-center mt-2"><a asp-controller="Account" asp-action="ChangePassword">Đổi mật khẩu</a></div>
 				</ul>
 			</div>
 			<div class="header__top__right__auth">
@@ -107,15 +110,16 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__left">
 							<ul>
-								@if (ViewBag.CustomerName != null)
-								{
-									<p style="font-size: 13px">Xin chào, @ViewBag.CustomerName!</p>
-								}
-								else
-								{
-									<p style="font-size: 16px">Xin chào, Khách!</p>
-								}
-								<li style="font-size: 13px; padding: 0">Miễn phí ship cho đơn hàng trên 999.999đ</li>
+								<p>
+									@if (ViewBag.CustomerName != null)
+									{
+										<span>Xin chào, @ViewBag.CustomerName!</span>
+									}
+									else
+									{
+										<span>Xin chào, Khách!</span>
+									}
+								</p>
 							</ul>
 						</div>
 
@@ -134,15 +138,21 @@
 								<span class="arrow_carrot-down"></span>
 								<ul>
 									<li><a href="#">Vietnamese</a></li>
-									<li><a href="#">English</a></li>
+									<div class="text-center mt-2"><a asp-controller="Account" asp-action="ChangePassword">Đổi mật khẩu</a></div>
+
 								</ul>
 							</div>
 							<div class="header__top__right__auth">
-								@* @if (string.IsNullOrEmpty(Context.Session.GetString("CustomerMa")))
+								@if (User.Identity.IsAuthenticated)
 								{
-								<a asp-controller="Customer" asp-action="Login">Đăng Nhập</a>
-								} *@
-								<a asp-controller="Customer" asp-action="Login"><i class="fa fa-user"></i> Đăng nhập</a>
+									<!-- Nếu đã đăng nhập, hiển thị nút Đăng xuất -->
+									<a asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+								}
+								else
+								{
+									<!-- Nếu chưa đăng nhập, hiển thị nút Đăng nhập -->
+									<a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Đăng nhập</a>
+								}
 							</div>
 						</div>
 					</div>
@@ -183,9 +193,9 @@
 								<a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
 							</li>
 							<li>
-								<a asp-controller="Cart" asp-action="Cart"><i class="fa fa-shopping-bag"></i> <span>@(ViewBag.CartItemCount ?? 0)</span></a>
-
-
+								<a asp-controller="Cart" asp-action="Index">
+									<i class="fa fa-shopping-bag"></i> <span id="cart-count">@ViewBag.CartItemCount</span>
+								</a>
 							</li>
 						</ul>
 						<div class="header__cart__price">item: <span>$150.00</span></div>
@@ -199,10 +209,7 @@
 	</header>
 	<!-- Header Section End -->
 	@RenderBody()
-
-
-
-
+	@RenderSection("Scripts", required: false)
 	<!-- Footer Section Begin -->
 	<footer class="footer spad">
 		<div class="container">
@@ -295,3 +302,14 @@
 	<script src="~/LayoutUser/js/main.js"></script>
 </body>
 </html>
+
+
+
+<script>
+	function updateCartCount() {
+		$.get("/Cart/GetCartItemCount", function (data) {
+			$("#cart-count").text(data);
+		});
+	}
+
+</script>

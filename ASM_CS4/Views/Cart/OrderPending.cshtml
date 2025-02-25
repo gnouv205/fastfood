@@ -1,0 +1,111 @@
+﻿@model List<ASM_CS4.Models.ChiTietDonDatHang>
+@{
+    ViewData["Title"] = "Trạng thái đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 16px;
+        color: #555;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+        .table thead {
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+
+    /* Trạng thái đơn hàng */
+    .status-pending {
+        color: #ff9800;
+        font-weight: bold;
+    }
+
+    .status-confirmed {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .status-cancelled {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+</style>
+
+<h2>Đơn hàng đang chờ xác nhận</h2>
+
+@if (!Model.Any())
+{
+    <p>Hiện tại bạn chưa có đơn hàng chờ xác nhận.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.TenSanPham</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.Gia.ToString("C")</td>
+                    <td>@((item.SoLuong * item.Gia).ToString("C"))</td>
+                    <td>@item.TrangThai</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
